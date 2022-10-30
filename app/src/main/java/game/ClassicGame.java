@@ -84,6 +84,7 @@ public class ClassicGame implements Game {
         this.board = new RectangularBoard(8,8,positions);
         this.players = players;
         this.movements = new Stack<>();
+        this.whiteTurn = true;
         this.victoryValidator = new ClassicVictoryValidator();
 
     }
