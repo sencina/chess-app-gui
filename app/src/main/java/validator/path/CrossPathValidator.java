@@ -9,7 +9,7 @@ public class CrossPathValidator extends AbstractPathValidator{
     private final LateralPathValidator lateralPathValidator;
     private final StraightPathValidator straightPathValidator;
 
-    protected CrossPathValidator(boolean jumper, int limit, int direction) {
+    public CrossPathValidator(boolean jumper, int limit, int direction) {
         super(jumper, limit, direction);
         this.lateralPathValidator = new LateralPathValidator(jumper, limit, direction);
         this.straightPathValidator = new StraightPathValidator(jumper, limit, direction);

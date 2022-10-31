@@ -8,7 +8,7 @@ import interfaces.Board;
 public class ComposedPathValidator extends AbstractPathValidator{
 
 
-    protected ComposedPathValidator(boolean jumper, int limit, int direction) {
+    public ComposedPathValidator(boolean jumper, int limit, int direction) {
         super(jumper, limit, direction);
     }
 

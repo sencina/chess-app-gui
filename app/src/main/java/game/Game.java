@@ -1,6 +1,7 @@
 package game;
 
 import exception.InvalidMovementException;
+import game.board.component.piece.EmptyPiece;
 import game.manager.MoveManager;
 import game.manager.PromotionManager;
 import game.movements.Movement;
@@ -13,7 +14,6 @@ public class Game implements interfaces.Game {
 
     private Board board;
     private final VictoryValidator victoryValidator;
-    private Stack<Movement> movements;
     private final TurnManager turnManager;
     private final PromotionManager promotionManager;
     private final MoveManager moveManager;
@@ -21,7 +21,6 @@ public class Game implements interfaces.Game {
     public Game(TurnManager trunManager,Board board, VictoryValidator victoryValidator, PromotionManager promotionManager, MoveManager moveManager) {
         this.board = board;
         this.victoryValidator = victoryValidator;
-        this.movements = new Stack<>();
         this.turnManager = trunManager;
         this.promotionManager= promotionManager;
         this.moveManager = moveManager;
@@ -29,12 +28,13 @@ public class Game implements interfaces.Game {
 
     @Override
     public void makeMove(Movement movement) throws InvalidMovementException {
-
-        //moveManager.movePiece(movement,board);
-    }
-
-    private void addMovement(Movement movement){
-        movements.push(movement);
+        if (moveManager.movePiece(movement, board)) {
+            if (board.isOccupied(movement.getTo())) {
+                board.updatePosition(movement.getTo(), new EmptyPiece());
+            }
+            board.updatePosition(movement.getTo(), movement.getFrom().getPiece());
+            board.updatePosition(movement.getFrom(), new EmptyPiece());
+        }
     }
 
     @Override

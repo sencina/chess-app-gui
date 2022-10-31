@@ -1,13 +1,12 @@
 package game.manager;
 
 import enums.Colour;
-import interfaces.TurnManager;
 
-public class TrunManager implements TurnManager {
+public class TurnManager implements interfaces.TurnManager {
 
     private boolean isWhiteTurn;
 
-    public TrunManager() {
+    public TurnManager() {
         isWhiteTurn = true;
     }
 
@@ -20,6 +19,5 @@ public class TrunManager implements TurnManager {
     public Colour getTurn() {
         return isWhiteTurn ? Colour.WHITE : Colour.BLACK;
     }
-
 
 }
