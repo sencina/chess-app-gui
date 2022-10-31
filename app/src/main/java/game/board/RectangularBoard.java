@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class RectangularBoard implements Board {
+public class RectangularBoard implements Board{
 
 
     private List<Position> positions;
@@ -91,6 +91,15 @@ public class RectangularBoard implements Board {
     }
 
     @Override
+    public List<Position> getCopyPosition() {
+        List<Position> toReturn = new ArrayList<>();
+        for (Position position : getPositions()) {
+            if (position.isEmpty()) toReturn.add(new Position(position.getRow(),position.getCol(),position.getPiece().clone()));
+        }
+        return toReturn;
+    }
+
+    @Override
     public List<Position> getPieces() {
 
         List<Position> toReturn = new ArrayList<>();
@@ -104,4 +113,8 @@ public class RectangularBoard implements Board {
     }
 
 
+    @Override
+    public Board clone() {
+        return new RectangularBoard(x,y,getCopyPosition());
+    }
 }

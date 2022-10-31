@@ -7,12 +7,10 @@ public class Movement {
 
     private Position from;
     private Position to;
-    private MovementValidator movementValidator;
 
     public Movement(Position from, Position to) {
         this.from = from;
         this.to = to;
-        this.movementValidator = getFrom().getPiece().getMovementValidator();
     }
 
     public Position getFrom() {
@@ -23,7 +21,4 @@ public class Movement {
         return to;
     }
 
-    public MovementValidator getValidator() {
-        return movementValidator;
-    }
 }

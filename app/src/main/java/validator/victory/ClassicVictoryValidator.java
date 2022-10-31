@@ -4,11 +4,8 @@ import interfaces.VictoryValidator;
 
 public class ClassicVictoryValidator implements VictoryValidator {
 
+    @Override
     public boolean victory(boolean whiteTurn) {
-
-        //Agarrar todas las piezas del tablera del color del turno
-        //Me fijo todos posibles movimientos del
-        return true;
+        return false;
     }
-
 }

@@ -1,11 +1,12 @@
 package interfaces;
 
 import game.board.component.Position;
+import interfaces.property.Cloneable;
 
 import java.util.List;
 
 
-public interface Board {
+public interface Board extends Cloneable<Board> {
 
     //Returns all the positions of the board
     public List<Position> getPositions();
@@ -27,5 +28,7 @@ public interface Board {
     public int getColumnSize();
 
     public List<Position> getPieces();
+
+    public List<Position> getCopyPosition();
 
 }

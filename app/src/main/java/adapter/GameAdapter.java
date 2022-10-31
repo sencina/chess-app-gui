@@ -18,7 +18,7 @@ public class GameAdapter{
 
     public List<ChessPiece> getPieces() {
 
-        return Adapter.adaptPieces(game.getPieces());
+        return Adapter.adaptPieces(game.getBoard().getPieces());
 
     }
 

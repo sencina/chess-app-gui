@@ -1,15 +1,20 @@
 package game.board.component;
+import game.board.component.piece.EmptyPiece;
 import interfaces.Piece;
 public class Position implements Comparable<Position> {
 
-    private int col;
-    private int row;
+    private final int col;
+    private final int row;
     private Piece piece;
 
-    public Position(int xCord, int yCord, Piece piece) {
-        this.col = xCord;
-        this.row = yCord;
+    public Position(int row, int column, Piece piece) {
+        this.col = row;
+        this.row = column;
         this.piece = piece;
+    }
+
+    public Position(int row, int column) {
+        this(row, column, new EmptyPiece());
     }
 
     public int getCol() {
@@ -33,11 +38,13 @@ public class Position implements Comparable<Position> {
         return this;
     }
 
+    public Position emptyPosition(){
+        return updatePosition(new EmptyPiece());
+    }
+
     @Override
     public int compareTo(Position o) {
-        if (this.col == o.col && this.row == o.row){
-            return 0;
-        }
+        if (this.col == o.col && this.row == o.row && this.piece.equals(o.piece)) return 0;
         return 1;
     }
 }
