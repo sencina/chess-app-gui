@@ -8,7 +8,7 @@ import interfaces.Board;
 public class StraightPathValidator extends AbstractPathValidator{
 
 
-    protected StraightPathValidator(boolean jumper, int limit, int direction) {
+    public StraightPathValidator(boolean jumper, int limit, int direction) {
         super(jumper, limit, direction);
     }
 

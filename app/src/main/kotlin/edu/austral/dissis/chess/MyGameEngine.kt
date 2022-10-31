@@ -1,9 +1,12 @@
 package edu.austral.dissis.chess
 
+import adapter.Adapter
 import adapter.GameAdapter
 import edu.austral.dissis.chess.gui.*
+import enums.Colour
 import factory.GameFactory
 import interfaces.Game
+import java.lang.Exception
 
 class MyGameEngine : GameEngine {
 
@@ -12,7 +15,14 @@ class MyGameEngine : GameEngine {
 
     override fun applyMove(move: Move): MoveResult {
 
-        TODO("Not implemented yet")
+        val movement = Adapter.toMovement(move,game.board);
+        return try{
+            game.makeMove(movement);
+            NewGameState(Adapter.adaptPieces(game.board.pieces), if (game.turnManager().getTurn() == Colour.WHITE) PlayerColor.WHITE else PlayerColor.BLACK);
+        }catch (e: Exception){
+            InvalidMove(e.localizedMessage);
+        }
+
     }
 
     override fun init(): InitialState {
