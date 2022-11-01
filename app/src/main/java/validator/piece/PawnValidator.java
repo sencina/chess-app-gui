@@ -18,14 +18,14 @@ public class PawnValidator implements MovementValidator {
     private final MovementValidator pathValidator;
     private final MovementValidator firstMoveValidator;
     private final MovementValidator captureValidator;
-    private final MovementValidator checkValidator;
+
+    private int count;
 
     public  PawnValidator(int direction) {
         this.pathValidator = new StraightPathValidator(false, 1, direction);
         this.firstMoveValidator = new StraightPathValidator(false, 2, direction);
         this.captureValidator = new CaptureValidator();
-        this.checkValidator = new CheckValidator();
-        this.countMap = new HashMap<>();
+        this.count = 0;
     }
 
     @Override
@@ -33,20 +33,20 @@ public class PawnValidator implements MovementValidator {
 
         boolean isDiagonal = Math.abs(movement.getFrom().getCol() - movement.getTo().getCol()) == 1 && Math.abs(movement.getFrom().getRow() - movement.getTo().getRow()) == 1;
         if (isDiagonal) {
-            countMap.put(movement.getFrom().getPiece().getId(), countMap.containsKey(movement.getFrom().getPiece().getId()) ? countMap.get(movement.getFrom().getPiece().getId()) + 1 : 1);
-            if (board.isOccupied(movement.getTo())) return captureValidator.validate(movement, board) && !checkValidator.validate(movement, board);
-            else throw new InvalidMovementException("Invalid diagnonal movement (Needs to eat a piece to move diagonally)");
+            count++;
+            if (board.isOccupied(movement.getTo())) return captureValidator.validate(movement, board);
+            else return false;
         }
         else {
-            if (!countMap.containsKey(movement.getFrom().getPiece().getId())) {
-                countMap.put(movement.getFrom().getPiece().getId(), countMap.containsKey(movement.getFrom().getPiece().getId()) ? countMap.get(movement.getFrom().getPiece().getId()) + 1 : 1);
-                if (!board.isOccupied(movement.getTo()))return firstMoveValidator.validate(movement, board) && !checkValidator.validate(movement, board);
-                else throw new InvalidMovementException("Position is occupied");
+            if (count == 0) {
+                count++;
+                if (!board.isOccupied(movement.getTo()))return firstMoveValidator.validate(movement, board);
+                else return false;
             }
             else {
-                countMap.put(movement.getFrom().getPiece().getId(), countMap.containsKey(movement.getFrom().getPiece().getId()) ? countMap.get(movement.getFrom().getPiece().getId()) + 1 : 1);
-                if (!board.isOccupied(movement.getTo()))return pathValidator.validate(movement, board) && !checkValidator.validate(movement, board);
-                else throw new InvalidMovementException("Position is occupied");
+                count++;
+                if (!board.isOccupied(movement.getTo()))return pathValidator.validate(movement, board);
+                else return false;
             }
         }
 

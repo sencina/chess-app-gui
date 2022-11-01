@@ -15,7 +15,7 @@ public class CaptureValidator implements MovementValidator {
             return true;
         } else if (board.isOccupied(movement.getTo()) && movement.getTo().getPiece().getColour() != movement.getFrom().getPiece().getColour()) {
             return true;}
-        throw new InvalidMovementException("Invalid movement");
+        return false;
     }
 }
 

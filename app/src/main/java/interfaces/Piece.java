@@ -15,4 +15,6 @@ public interface Piece extends Cloneable<Piece> {
     public String getId();
 
     boolean equals(Piece piece);
+
+    MovementValidator movementValidator();
 }

@@ -30,12 +30,12 @@ public class StraightPathValidator extends AbstractPathValidator{
             for (int i = min + 1; i < max && !jumper; i++) {
                 Position position = board.getPosition(fromX, i);
                 if (!position.isEmpty()) {
-                    throw new InvalidMovementException("There is a piece in the way");
+                    return false;
                 }
             }
 
             return true;
 
-        } else throw new InvalidMovementException("Invalid movement");
+        } return false;
     }
 }

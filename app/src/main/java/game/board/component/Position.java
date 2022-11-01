@@ -7,14 +7,14 @@ public class Position implements Comparable<Position> {
     private final int row;
     private Piece piece;
 
-    public Position(int row, int column, Piece piece) {
-        this.col = row;
-        this.row = column;
+    public Position(int column, int row, Piece piece) {
+        this.col = column;
+        this.row = row;
         this.piece = piece;
     }
 
-    public Position(int row, int column) {
-        this(row, column, new EmptyPiece());
+    public Position(int column, int row) {
+        this(column, row, new EmptyPiece());
     }
 
     public int getCol() {
@@ -46,5 +46,19 @@ public class Position implements Comparable<Position> {
     public int compareTo(Position o) {
         if (this.col == o.col && this.row == o.row && this.piece.equals(o.piece)) return 0;
         return 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return col == position.col &&
+                row == position.row;
+    }
+
+    @Override
+    public int hashCode() {
+        return 909090;
     }
 }

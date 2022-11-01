@@ -31,12 +31,12 @@ public class LateralPathValidator extends AbstractPathValidator{
             for (int i = min + 1; i < max && !jumper; i++) {
                 Position position = board.getPosition(i, fromY);
                 if (!position.isEmpty()) {
-                    throw new InvalidMovementException("There is a piece in the way");
+                    return false;
                 }
             }
 
             return true;
 
-        } throw new InvalidMovementException("Invalid movement");
+        } return false;
     }
 }

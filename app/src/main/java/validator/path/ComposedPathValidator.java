@@ -35,11 +35,10 @@ public class ComposedPathValidator extends AbstractPathValidator{
             boolean validPath = jumper || checkPath(movement.getFrom(),movement.getTo(),true,board) || checkPath(movement.getFrom(),movement.getTo(),false,board);
 
             if (validPath) return true;
-            else throw new InvalidMovementException("There is a piece in the way");
 
         }
 
-        throw new InvalidMovementException("Invalid movement");
+        return false;
     }
 
     private boolean checkPath(Position from, Position to, boolean x, Board board) {

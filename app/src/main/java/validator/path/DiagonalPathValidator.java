@@ -32,7 +32,7 @@ public class DiagonalPathValidator extends AbstractPathValidator{
             for (int i = min + 1; i < max && !jumper; i++) {
                 Position position = board.getPosition(i, fromY + (i - min) * directionY);
                 if (!position.isEmpty()) {
-                    throw new InvalidMovementException("There is a piece in the way");
+                    return false;
                 }
             }
 
@@ -40,6 +40,6 @@ public class DiagonalPathValidator extends AbstractPathValidator{
 
         }
 
-        throw new InvalidMovementException("Invalid movement");
+        return false;
     }
 }

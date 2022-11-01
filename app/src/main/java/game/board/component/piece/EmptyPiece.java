@@ -4,12 +4,13 @@ import enums.Colour;
 import enums.Name;
 import interfaces.MovementValidator;
 import interfaces.Piece;
+import validator.EmptyPieceValidator;
 
 public class EmptyPiece implements Piece {
 
-
+    private final MovementValidator validator;
     public EmptyPiece() {
-
+        this.validator = new EmptyPieceValidator();
     }
 
     @Override
@@ -34,6 +35,11 @@ public class EmptyPiece implements Piece {
     @Override
     public boolean equals(Piece piece) {
         return false;
+    }
+
+    @Override
+    public MovementValidator movementValidator() {
+        return validator;
     }
 
     @Override

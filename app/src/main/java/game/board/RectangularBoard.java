@@ -94,7 +94,7 @@ public class RectangularBoard implements Board{
     public List<Position> getCopyPosition() {
         List<Position> toReturn = new ArrayList<>();
         for (Position position : getPositions()) {
-            if (position.isEmpty()) toReturn.add(new Position(position.getRow(),position.getCol(),position.getPiece().clone()));
+            if (!position.isEmpty()) toReturn.add(new Position(position.getCol(),position.getRow(),position.getPiece().clone()));
         }
         return toReturn;
     }

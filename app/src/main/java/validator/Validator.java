@@ -6,20 +6,24 @@ import interfaces.Board;
 import interfaces.MovementValidator;
 import validator.check.CheckValidator;
 
+import java.util.Set;
+
 public class Validator implements MovementValidator {
 
-    private final MovementValidator pathValidator;
-    private final MovementValidator captureValidator;
-    private final MovementValidator checkValidator;
+    private final Set<MovementValidator> validators;
 
-    public Validator(MovementValidator pathValidator, MovementValidator captureValidator, CheckValidator checkValidator) {
-        this.pathValidator = pathValidator;
-        this.captureValidator = captureValidator;
-        this.checkValidator = checkValidator;
+    public Validator(Set<MovementValidator> validators) {
+        this.validators = validators;
     }
 
     @Override
     public boolean validate(Movement movement, Board board) throws InvalidMovementException {
-        return pathValidator.validate(movement, board) && captureValidator.validate(movement, board) && !checkValidator.validate(movement, board);
+
+            for (MovementValidator validator : validators) {
+                if (!validator.validate(movement, board)) {
+                    return false;
+                }
+            }
+            return true;
     }
 }

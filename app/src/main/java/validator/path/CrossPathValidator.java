@@ -23,7 +23,7 @@ public class CrossPathValidator extends AbstractPathValidator{
         } else if (movement.getFrom().getRow() == movement.getTo().getRow()) {
             return lateralPathValidator.validate(movement, board);
         } else {
-            throw new InvalidMovementException("Invalid movement");
+            return false;
         }
     }
 }
