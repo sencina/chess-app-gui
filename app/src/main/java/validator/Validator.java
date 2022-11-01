@@ -4,8 +4,7 @@ import exception.InvalidMovementException;
 import game.movements.Movement;
 import interfaces.Board;
 import interfaces.MovementValidator;
-import interfaces.VictoryValidator;
-import validator.path.AbstractPathValidator;
+import validator.check.CheckValidator;
 
 public class Validator implements MovementValidator {
 

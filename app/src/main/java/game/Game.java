@@ -34,6 +34,7 @@ public class Game implements interfaces.Game {
             }
             board.updatePosition(movement.getTo(), movement.getFrom().getPiece());
             board.updatePosition(movement.getFrom(), new EmptyPiece());
+            promotionManager.promotePiece(movement);
             turnManager.updateTurn();
         }
     }

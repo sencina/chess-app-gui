@@ -4,7 +4,7 @@ import enums.Colour;
 import enums.Name;
 import game.manager.MoveManager;
 import interfaces.MovementValidator;
-import validator.CheckValidator;
+import validator.check.CheckValidator;
 import validator.piece.PawnValidator;
 import validator.Validator;
 import validator.capture.CaptureValidator;

@@ -24,10 +24,10 @@ public class PromotionManager {
         interfaces.Piece piece = movement.getTo().getPiece();
         if (movement.getTo().getPiece().getName() == promotionPiece){
             if (piece.getColour() == Colour.WHITE){
-                if (movement.getTo().getRow() == board.getRowSize() -1) movement.getTo().updatePosition(new Piece(piece.getId(), promoteToPiece, piece.getColour()));
+                if (movement.getTo().getRow() == 0) movement.getTo().updatePosition(new Piece(piece.getId(), promoteToPiece, piece.getColour()));
             }
             else {
-                if (movement.getTo().getRow() == 0) movement.getTo().updatePosition(new Piece(piece.getId(), promoteToPiece, piece.getColour()));
+                if (movement.getTo().getRow() == board.getRowSize()-1) movement.getTo().updatePosition(new Piece(piece.getId(), promoteToPiece, piece.getColour()));
             }
         }
     }
