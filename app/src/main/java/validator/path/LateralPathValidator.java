@@ -15,8 +15,6 @@ public class LateralPathValidator extends AbstractPathValidator{
     @Override
     public boolean validate(Movement movement, Board board) throws InvalidMovementException {
 
-        if (jumper) return true;
-
         int fromX = movement.getFrom().getCol();
         int fromY = movement.getFrom().getRow();
         int toX = movement.getTo().getCol();
@@ -30,7 +28,7 @@ public class LateralPathValidator extends AbstractPathValidator{
             int max = Math.max(fromX, toX);
 
             //Check if there is a piece in the way
-            for (int i = min + 1; i < max; i++) {
+            for (int i = min + 1; i < max && !jumper; i++) {
                 Position position = board.getPosition(i, fromY);
                 if (!position.isEmpty()) {
                     throw new InvalidMovementException("There is a piece in the way");

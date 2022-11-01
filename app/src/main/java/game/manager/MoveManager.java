@@ -1,5 +1,6 @@
 package game.manager;
 
+import enums.Colour;
 import exception.InvalidMovementException;
 import game.movements.Movement;
 import interfaces.Board;
@@ -16,10 +17,10 @@ public class MoveManager {
         this.validatorMap = validatorMap;
     }
 
-    public boolean movePiece(Movement movement, Board board) throws InvalidMovementException {
+    public boolean movePiece(Movement movement, Board board, Colour colour) throws InvalidMovementException {
 
         NameColour nameColour = new NameColour(movement.getFrom().getPiece().getName(), movement.getFrom().getPiece().getColour());
-        if (validatorMap.containsKey(nameColour)){
+        if (validatorMap.containsKey(nameColour) && movement.getFrom().getPiece().getColour() == colour) {
             return validatorMap.get(nameColour).validate(movement, board);
         }
 

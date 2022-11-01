@@ -5,9 +5,9 @@ import enums.Name;
 import game.manager.MoveManager;
 import interfaces.MovementValidator;
 import validator.CheckValidator;
+import validator.piece.PawnValidator;
 import validator.Validator;
 import validator.capture.CaptureValidator;
-import validator.capture.PawnCaptureValidator;
 import validator.data.NameColour;
 import validator.path.*;
 
@@ -20,8 +20,8 @@ public class MoveManagerFactory {
 
         Map<NameColour, MovementValidator> map = new HashMap<>();
 
-        map.put(new NameColour(Name.PAWN, Colour.WHITE), new Validator(new StraightPathValidator(false,1,-1), new PawnCaptureValidator(), new CheckValidator()));
-        map.put(new NameColour(Name.PAWN, Colour.BLACK), new Validator(new StraightPathValidator(false,1,1), new PawnCaptureValidator(), new CheckValidator()));
+        map.put(new NameColour(Name.PAWN, Colour.WHITE),new PawnValidator(-1));
+        map.put(new NameColour(Name.PAWN, Colour.BLACK), new PawnValidator(1));
         map.put(new NameColour(Name.ROOK, Colour.WHITE), new Validator(new CrossPathValidator(false,8,0), new CaptureValidator(), new CheckValidator()));
         map.put(new NameColour(Name.ROOK, Colour.BLACK), new Validator(new CrossPathValidator(false,8,0), new CaptureValidator(), new CheckValidator()));
         map.put(new NameColour(Name.KNIGHT, Colour.WHITE), new Validator(new ComposedPathValidator(true,3,0), new CaptureValidator(), new CheckValidator()));

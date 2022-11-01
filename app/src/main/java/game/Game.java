@@ -28,12 +28,13 @@ public class Game implements interfaces.Game {
 
     @Override
     public void makeMove(Movement movement) throws InvalidMovementException {
-        if (moveManager.movePiece(movement, board)) {
+        if (moveManager.movePiece(movement, board, turnManager.getTurn())) {
             if (board.isOccupied(movement.getTo())) {
                 board.updatePosition(movement.getTo(), new EmptyPiece());
             }
             board.updatePosition(movement.getTo(), movement.getFrom().getPiece());
             board.updatePosition(movement.getFrom(), new EmptyPiece());
+            turnManager.updateTurn();
         }
     }
 

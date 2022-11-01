@@ -9,11 +9,11 @@ import validator.path.AbstractPathValidator;
 
 public class Validator implements MovementValidator {
 
-    private final AbstractPathValidator pathValidator;
+    private final MovementValidator pathValidator;
     private final MovementValidator captureValidator;
     private final MovementValidator checkValidator;
 
-    public Validator(AbstractPathValidator pathValidator, MovementValidator captureValidator, CheckValidator checkValidator) {
+    public Validator(MovementValidator pathValidator, MovementValidator captureValidator, CheckValidator checkValidator) {
         this.pathValidator = pathValidator;
         this.captureValidator = captureValidator;
         this.checkValidator = checkValidator;

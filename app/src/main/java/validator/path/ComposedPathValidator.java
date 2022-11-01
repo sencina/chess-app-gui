@@ -15,7 +15,6 @@ public class ComposedPathValidator extends AbstractPathValidator{
     @Override
     public boolean validate(Movement movement, Board board) throws InvalidMovementException {
 
-        if (jumper) return true;
 
         int fromX = movement.getFrom().getCol();
         int fromY = movement.getFrom().getRow();
@@ -33,7 +32,7 @@ public class ComposedPathValidator extends AbstractPathValidator{
         if (inLimit) {
 
             //Check if there is a piece in the way (x path)
-            boolean validPath = checkPath(movement.getFrom(),movement.getTo(),true,board) || checkPath(movement.getFrom(),movement.getTo(),false,board);
+            boolean validPath = jumper || checkPath(movement.getFrom(),movement.getTo(),true,board) || checkPath(movement.getFrom(),movement.getTo(),false,board);
 
             if (validPath) return true;
             else throw new InvalidMovementException("There is a piece in the way");

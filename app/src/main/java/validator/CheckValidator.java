@@ -8,6 +8,7 @@ public class CheckValidator implements MovementValidator {
 
     @Override
     public boolean validate(Movement movement, Board board) {
+
         return false;
     }
 }
