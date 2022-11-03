@@ -1,9 +1,7 @@
 package edu.austral.dissis.chess
 
-import edu.austral.dissis.chess.gui.AbstractChessGameApplication
-import edu.austral.dissis.chess.gui.CachedImageResolver
-import edu.austral.dissis.chess.gui.DefaultImageResolver
-import edu.austral.dissis.chess.gui.ImageResolver
+import edu.austral.dissis.chess.gui.*
+import game.engine.MyGameEngine
 import javafx.application.Application
 
 fun main() {

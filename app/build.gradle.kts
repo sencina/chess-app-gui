@@ -34,5 +34,6 @@ javafx {
 
 application {
     // Define the main class for the application.
+
     mainClass.set("edu.austral.dissis.chess.AppKt")
 }

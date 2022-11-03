@@ -1,53 +1,40 @@
 package game.board.component.piece;
 
-import enums.Colour;
-import enums.Name;
-import interfaces.MovementValidator;
+import edu.austral.dissis.chess.gui.PlayerColor;
+import enums.PieceType;
+import validation.pieceMover.Mover;
 
-public class Piece implements interfaces.Piece {
+public class Piece {
 
-    private final Colour colour;
-    private final Name name;
+    private final PlayerColor color;
+    private final PieceType type;
     private final String id;
+    private final Mover mover;
 
-    private final MovementValidator validator;
-
-    public Piece(String id, Name name, Colour colour, MovementValidator validator) {
+    public Piece(PlayerColor color, PieceType type, String id, Mover mover) {
+        this.color = color;
+        this.type = type;
         this.id = id;
-        this.colour = colour;
-        this.name = name;
-        this.validator = validator;
+        this.mover = mover;
     }
 
-    public Colour getColour() {
-        return colour;
+    public PlayerColor color() {
+        return color;
     }
 
-    public Name getName() {
-        return name;
+    public PieceType type() {
+        return type;
     }
 
-    public String getId() {
+    public String id() {
         return id;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
+    public Mover mover() {
+        return mover;
     }
 
-    @Override
-    public boolean equals(interfaces.Piece piece) {
-        return this.id.equals(piece.getId());
-    }
-
-    @Override
-    public MovementValidator movementValidator() {
-        return validator;
-    }
-
-    @Override
-    public interfaces.Piece clone() {
-        return new Piece(id, name, colour, validator);
+    public Piece copy() {
+        return new Piece(color, type, id, mover);
     }
 }
