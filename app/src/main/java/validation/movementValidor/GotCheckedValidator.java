@@ -23,7 +23,7 @@ public class GotCheckedValidator implements MovementValidator{
         Map<Coordinate, Piece> positions = clone.board().positions();
         tryMoveWithoutAnd(movement, clone, positions);
 
-        Coordinate kingCoordinate = status.board().getPositionOfPiece(PieceType.KING, status.turnManager().getTurn());
+        Coordinate kingCoordinate = clone.board().getPositionOfPiece(PieceType.KING, status.turnManager().getTurn());
 
         PlayerColor enemyColor = status.turnManager().getTurn() == PlayerColor.WHITE ? PlayerColor.BLACK : PlayerColor.WHITE;
 
