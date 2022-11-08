@@ -48,13 +48,10 @@ public class RectangularBoard implements Board{
     }
 
 
+
     @Override
-    public boolean movePiece(Set<Movement> movements, Map<Coordinate, Piece> positions) {
-        for (Movement movement : movements) {
-            positions.put(movement.to(), positions.get(movement.from()));
-            positions.remove(movement.from());
-        }
-        history.add(positions);
+    public boolean movePiece(Map<Coordinate, Piece> updatePositions) {
+        history.add(updatePositions);
         return true;
     }
 
@@ -69,5 +66,33 @@ public class RectangularBoard implements Board{
 
         return copyPositions;
 
+    }
+
+    @Override
+    public Board clone() {
+        return new RectangularBoard(columns, rows, cloneHistory());
+    }
+
+    private List<Map<Coordinate,Piece>> cloneHistory() {
+
+        List<Map<Coordinate, Piece>> cloneHistory = new ArrayList<>();
+        for (Map<Coordinate, Piece> positions: history) {
+            Map<Coordinate, Piece> clonePositions = new HashMap<>();
+            for (Coordinate position: positions.keySet()) {
+                clonePositions.put(position, positions.get(position).copy());
+            }
+            cloneHistory.add(clonePositions);
+        }
+        return cloneHistory;
+    }
+
+    @Override
+    public Coordinate getPositionOfPiece(PieceType type, PlayerColor color) {
+        Map<Coordinate, Piece> positions = positions();
+        for (Coordinate position: positions.keySet()) {
+            Piece piece = positions.get(position);
+            if (piece.type() == type && piece.color() == color) return position;
+        }
+        return null;
     }
 }

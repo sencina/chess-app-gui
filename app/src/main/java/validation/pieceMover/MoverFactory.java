@@ -2,9 +2,9 @@ package validation.pieceMover;
 
 import edu.austral.dissis.chess.gui.PlayerColor;
 import validation.movementValidor.*;
-import validation.movementValidor.core.CaptureValidator;
-import validation.movementValidor.core.ComposedMovementValidator;
-import validation.movementValidor.core.UnidirectionalMovementValidator;
+import validation.movementValidor.CaptureValidator;
+import validation.movementValidor.ComposedMovementValidator;
+import validation.movementValidor.UnidirectionalMovementValidator;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ public class MoverFactory {
         orMovementValidators.add(new UnidirectionalMovementValidator(-1,0));
         orMovementValidators.add(new UnidirectionalMovementValidator(0,-1));
 
-        return new ClassicMover(createDefaultAndValidators(), orMovementValidators);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators);
     }
 
     public static Mover bishopMover(){
@@ -30,7 +30,7 @@ public class MoverFactory {
         orMovementValidators.add(new UnidirectionalMovementValidator(-1,1));
         orMovementValidators.add(new UnidirectionalMovementValidator(1,-1));
 
-        return new ClassicMover(createDefaultAndValidators(), orMovementValidators);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators);
     }
 
     public static Mover queenMover(){
@@ -46,7 +46,7 @@ public class MoverFactory {
         orMovementValidators.add(new UnidirectionalMovementValidator(-1,0));
         orMovementValidators.add(new UnidirectionalMovementValidator(0,-1));
 
-        return new ClassicMover(createDefaultAndValidators(),orMovementValidators);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(),orMovementValidators);
     }
 
     public static Mover kingMover(){
@@ -68,7 +68,7 @@ public class MoverFactory {
             orMovementValidators1.add(orMovementValidator);
         }
 
-        return new ClassicMover(createDefaultAndValidators(), orMovementValidators1);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators1);
     }
 
     public static Mover knightMover(){
@@ -84,7 +84,7 @@ public class MoverFactory {
         orMovementValidators.add(new ComposedMovementValidator(-2,1));
         orMovementValidators.add(new ComposedMovementValidator(2,-1));
 
-        return new ClassicMover(createDefaultAndValidators(), orMovementValidators);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators);
     }
 
     public static Mover pawnMover(PlayerColor color){
@@ -110,17 +110,23 @@ public class MoverFactory {
                 .addMovementValidator(new LimitValidator(1))
                 .addMovementValidator(new CaptureValidator(true)));
 
-        return new ClassicMover(createDefaultAndValidators(),orMovementValidators);
+        return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(),orMovementValidators);
     }
 
     private static Set<MovementValidator> createDefaultAndValidators(){
 
         Set<MovementValidator> andMovementValidators = new HashSet<>();
-
-        andMovementValidators.add(new InBoardValidator());
-        andMovementValidators.add(new InPlaceValidator());
-        andMovementValidators.add(new ColorValidator());
-
+        andMovementValidators.add(new GotCheckedValidator());
         return andMovementValidators;
+    }
+
+    private static Set<MovementValidator> createPreconditionsValidators(){
+        Set<MovementValidator> preconditionsValidators = new HashSet<>();
+
+        preconditionsValidators.add(new InBoardValidator());
+        preconditionsValidators.add(new InPlaceValidator());
+        preconditionsValidators.add(new ColorValidator());
+
+        return preconditionsValidators;
     }
 }

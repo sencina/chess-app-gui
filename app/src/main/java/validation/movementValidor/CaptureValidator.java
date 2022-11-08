@@ -1,7 +1,8 @@
-package validation.movementValidor.core;
+package validation.movementValidor;
 
 
 
+import game.board.component.piece.Piece;
 import game.exceptions.InvalidMovementException;
 import game.movement.Movement;
 import game.status.GameStatus;
@@ -17,8 +18,9 @@ public class CaptureValidator extends AbstractValidator {
 
     @Override
     public boolean validate(Movement movement, GameStatus status) throws Exception {
-        boolean hasFinalPiece = status.board().positions().get(movement.to()) != null;
-        if (hasFinalPiece && capture) return checkValidators(movement, status)
+        Piece toPiece = status.board().positions().get(movement.to());
+        boolean hasFinalPiece = toPiece != null;
+        if (hasFinalPiece && toPiece.color() != status.turnManager().getTurn() && capture) return checkValidators(movement, status)
 ;
         else if (!hasFinalPiece && !capture) return checkValidators(movement, status)
 ;

@@ -12,4 +12,7 @@ import java.util.Map;
 public interface Mover {
 
     boolean tryMove(Movement movement, GameStatus status) throws Exception;
+
+    public boolean tryMoveWithoutAnd(Movement movement, GameStatus status) throws Exception;
+
 }

@@ -2,7 +2,8 @@ package game.board.component.piece;
 
 import edu.austral.dissis.chess.gui.PlayerColor;
 import enums.PieceType;
-import validation.pieceMover.Mover;
+
+import java.util.Set;
 
 import static validation.pieceMover.MoverFactory.*;
 
@@ -11,27 +12,28 @@ public class PieceFactory {
     private static int id;
 
     public static Piece createPawn(PlayerColor color) {
-        return new Piece(color, PieceType.PAWN, Integer.toString(id++), pawnMover(color));
+        return new Piece(color, PieceType.PAWN, Integer.toString(id++),
+                Set.of(pawnMover(color)));
     }
 
     public static Piece createRook(PlayerColor color) {
-        return new Piece(color, PieceType.ROOK, Integer.toString(id++), rookMover());
+        return new Piece(color, PieceType.ROOK, Integer.toString(id++), Set.of(rookMover()));
     }
 
     public static Piece createKnight(PlayerColor color) {
-        return new Piece(color, PieceType.KNIGHT, Integer.toString(id++), knightMover());
+        return new Piece(color, PieceType.KNIGHT, Integer.toString(id++), Set.of(knightMover()));
     }
 
     public static Piece createBishop(PlayerColor color) {
-        return new Piece(color, PieceType.BISHOP, Integer.toString(id++), bishopMover());
+        return new Piece(color, PieceType.BISHOP, Integer.toString(id++), Set.of(bishopMover()));
     }
 
     public static Piece createQueen(PlayerColor color) {
-        return new Piece(color, PieceType.QUEEN, Integer.toString(id++), queenMover());
+        return new Piece(color, PieceType.QUEEN, Integer.toString(id++), Set.of(queenMover()));
     }
 
     public static Piece createKing(PlayerColor color) {
-        return new Piece(color, PieceType.KING, Integer.toString(id++), kingMover());
+        return new Piece(color, PieceType.KING, Integer.toString(id++), Set.of(kingMover()));
     }
 
 

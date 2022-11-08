@@ -14,9 +14,13 @@ public interface Board {
 
     int rows();
     int columns();
-    boolean movePiece(Set<Movement> movements, Map<Coordinate, Piece> positions);
+    boolean movePiece(Map<Coordinate, Piece> updatePositions);
     Map<Coordinate, Piece> positions();
     boolean isInsideBoard(Coordinate coordinate);
 
     List<Map<Coordinate, Piece>> history();
+
+    Board clone();
+
+    Coordinate getPositionOfPiece(PieceType type, PlayerColor color);
 }

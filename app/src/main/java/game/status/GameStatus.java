@@ -1,6 +1,7 @@
 package game.status;
 
 import game.board.Board;
+import game.engine.GameManager;
 import game.turnManager.TurnManager;
 
 public class GameStatus {
@@ -19,5 +20,9 @@ public class GameStatus {
 
     public Board board() {
         return board;
+    }
+
+    public GameStatus clone() {
+        return new GameStatus(turnManager.clone(), board.clone());
     }
 }

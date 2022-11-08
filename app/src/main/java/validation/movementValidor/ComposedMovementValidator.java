@@ -1,4 +1,4 @@
-package validation.movementValidor.core;
+package validation.movementValidor;
 
 
 

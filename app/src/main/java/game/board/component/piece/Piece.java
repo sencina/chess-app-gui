@@ -4,14 +4,16 @@ import edu.austral.dissis.chess.gui.PlayerColor;
 import enums.PieceType;
 import validation.pieceMover.Mover;
 
+import java.util.Set;
+
 public class Piece {
 
     private final PlayerColor color;
     private final PieceType type;
     private final String id;
-    private final Mover mover;
+    private final Set<Mover> mover;
 
-    public Piece(PlayerColor color, PieceType type, String id, Mover mover) {
+    public Piece(PlayerColor color, PieceType type, String id, Set<Mover> mover) {
         this.color = color;
         this.type = type;
         this.id = id;
@@ -30,7 +32,7 @@ public class Piece {
         return id;
     }
 
-    public Mover mover() {
+    public Set<Mover> mover() {
         return mover;
     }
 
