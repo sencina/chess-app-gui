@@ -1,10 +1,12 @@
-package validation.pieceMover;
+package factory;
 
 import edu.austral.dissis.chess.gui.PlayerColor;
 import validation.movementValidor.*;
 import validation.movementValidor.CaptureValidator;
 import validation.movementValidor.ComposedMovementValidator;
 import validation.movementValidor.UnidirectionalMovementValidator;
+import validation.pieceMover.ClassicMover;
+import validation.pieceMover.Mover;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +16,7 @@ public class MoverFactory {
     public static Mover rookMover(){
         Set<MovementValidator> orMovementValidators = new HashSet<>();
 
-        orMovementValidators.add(new UnidirectionalMovementValidator(0,1));
-        orMovementValidators.add(new UnidirectionalMovementValidator(1,0));
-        orMovementValidators.add(new UnidirectionalMovementValidator(-1,0));
-        orMovementValidators.add(new UnidirectionalMovementValidator(0,-1));
+        addRookSet(orMovementValidators);
 
         return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators);
     }
@@ -74,15 +73,7 @@ public class MoverFactory {
     public static Mover knightMover(){
         Set<MovementValidator> orMovementValidators = new HashSet<>();
 
-        orMovementValidators.add(new ComposedMovementValidator(1,2));
-        orMovementValidators.add(new ComposedMovementValidator(-1,-2));
-        orMovementValidators.add(new ComposedMovementValidator(-1,2));
-        orMovementValidators.add(new ComposedMovementValidator(1,-2));
-
-        orMovementValidators.add(new ComposedMovementValidator(2,1));
-        orMovementValidators.add(new ComposedMovementValidator(-2,-1));
-        orMovementValidators.add(new ComposedMovementValidator(-2,1));
-        orMovementValidators.add(new ComposedMovementValidator(2,-1));
+        addKnightSet(orMovementValidators);
 
         return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(), orMovementValidators);
     }
@@ -111,6 +102,53 @@ public class MoverFactory {
                 .addMovementValidator(new CaptureValidator(true)));
 
         return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(),orMovementValidators);
+    }
+
+    public static Mover archbishopMover(){
+
+        Set<MovementValidator> orMovementValidators = new HashSet<>();
+        addKnightSet(orMovementValidators);
+        addBishopSet(orMovementValidators);
+
+        return new ClassicMover(createPreconditionsValidators(),createDefaultAndValidators(),orMovementValidators);
+    }
+
+    public static Mover chancellorMover(){
+
+        Set<MovementValidator> orMovementvalidators = new HashSet<>();
+        addKnightSet(orMovementvalidators);
+        addRookSet(orMovementvalidators);
+
+        return new ClassicMover(createPreconditionsValidators(),createDefaultAndValidators(),orMovementvalidators);
+
+    }
+
+    private static void addRookSet(Set<MovementValidator> orMovementValidators){
+        orMovementValidators.add(new UnidirectionalMovementValidator(0,1));
+        orMovementValidators.add(new UnidirectionalMovementValidator(1,0));
+        orMovementValidators.add(new UnidirectionalMovementValidator(-1,0));
+        orMovementValidators.add(new UnidirectionalMovementValidator(0,-1));
+    }
+
+    private static void addKnightSet(Set<MovementValidator> orMovementValidators) {
+
+        orMovementValidators.add(new ComposedMovementValidator(1,2));
+        orMovementValidators.add(new ComposedMovementValidator(-1,-2));
+        orMovementValidators.add(new ComposedMovementValidator(-1,2));
+        orMovementValidators.add(new ComposedMovementValidator(1,-2));
+
+        orMovementValidators.add(new ComposedMovementValidator(2,1));
+        orMovementValidators.add(new ComposedMovementValidator(-2,-1));
+        orMovementValidators.add(new ComposedMovementValidator(-2,1));
+        orMovementValidators.add(new ComposedMovementValidator(2,-1));
+
+    }
+
+    public static void addBishopSet(Set<MovementValidator> orMovementValidators){
+        orMovementValidators.add(new UnidirectionalMovementValidator(1,1));
+        orMovementValidators.add(new UnidirectionalMovementValidator(-1,-1));
+        orMovementValidators.add(new UnidirectionalMovementValidator(-1,1));
+        orMovementValidators.add(new UnidirectionalMovementValidator(1,-1));
     }
 
     private static Set<MovementValidator> createDefaultAndValidators(){

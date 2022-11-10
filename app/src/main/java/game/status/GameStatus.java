@@ -1,8 +1,7 @@
 package game.status;
 
 import game.board.Board;
-import game.engine.GameManager;
-import game.turnManager.TurnManager;
+import game.managers.TurnManager;
 
 public class GameStatus {
 

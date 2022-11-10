@@ -21,6 +21,13 @@ public class RectangularBoard implements Board{
         this.history = history;
     }
 
+    public RectangularBoard(int columns, int rows) {
+        this.columns = columns;
+        this.rows = rows;
+        this.history = new ArrayList<>();
+        this.history.add(new HashMap<>());
+    }
+
 
 
     @Override
@@ -94,5 +101,16 @@ public class RectangularBoard implements Board{
             if (piece.type() == type && piece.color() == color) return position;
         }
         return null;
+    }
+
+    @Override
+    public List<Coordinate> getCoordinatesOfPiecesByColour(PlayerColor color) {
+        List<Coordinate> coordinates = new ArrayList<>();
+        Map<Coordinate, Piece> positions = positions();
+        for (Coordinate position: positions.keySet()) {
+            Piece piece = positions.get(position);
+            if (piece.color() == color) coordinates.add(position);
+        }
+        return coordinates;
     }
 }

@@ -1,11 +1,12 @@
-package game.board.component.piece;
+package factory;
 
 import edu.austral.dissis.chess.gui.PlayerColor;
 import enums.PieceType;
+import game.board.component.piece.Piece;
 
 import java.util.Set;
 
-import static validation.pieceMover.MoverFactory.*;
+import static factory.MoverFactory.*;
 
 public class PieceFactory {
 
@@ -37,12 +38,12 @@ public class PieceFactory {
     }
 
 
-//    public static Piece createArchBishop(PlayerColor color) {
-//        return new Piece(color, PieceType.ARCHBISHOP, Integer.toString(id++));
-//    }
-//
-//    public static Piece createChancellor(PlayerColor color) {
-//        return new Piece(color, PieceType.CHANCELLOR, Integer.toString(id++));
-//    }
+    public static Piece createArchBishop(PlayerColor color) {
+        return new Piece(color, PieceType.ARCHBISHOP, Integer.toString(id++), Set.of(archbishopMover()));
+    }
+
+    public static Piece createChancellor(PlayerColor color) {
+        return new Piece(color, PieceType.CHANCELLOR, Integer.toString(id++), Set.of(chancellorMover()));
+    }
 
 }

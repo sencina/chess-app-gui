@@ -23,4 +23,6 @@ public interface Board {
     Board clone();
 
     Coordinate getPositionOfPiece(PieceType type, PlayerColor color);
+
+    List<Coordinate> getCoordinatesOfPiecesByColour(PlayerColor color);
 }

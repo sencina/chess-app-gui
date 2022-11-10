@@ -1,4 +1,4 @@
-package game.engine;
+package game.managers;
 
 import edu.austral.dissis.chess.gui.GameOver;
 import edu.austral.dissis.chess.gui.MoveResult;

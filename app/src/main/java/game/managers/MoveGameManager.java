@@ -1,4 +1,4 @@
-package game.engine;
+package game.managers;
 
 import adapter.Adapter;
 import edu.austral.dissis.chess.gui.InvalidMove;

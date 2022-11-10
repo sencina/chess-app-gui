@@ -1,4 +1,4 @@
-package game.turnManager;
+package game.managers;
 
 import edu.austral.dissis.chess.gui.PlayerColor;
 

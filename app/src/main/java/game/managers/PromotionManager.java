@@ -1,4 +1,4 @@
-package game.engine;
+package game.managers;
 
 import adapter.Adapter;
 import edu.austral.dissis.chess.gui.InvalidMove;
@@ -6,6 +6,7 @@ import edu.austral.dissis.chess.gui.MoveResult;
 import edu.austral.dissis.chess.gui.NewGameState;
 import edu.austral.dissis.chess.gui.PlayerColor;
 import game.board.component.piece.Piece;
+import game.managers.GameManager;
 import game.movement.Coordinate;
 import game.movement.Movement;
 import game.status.GameStatus;

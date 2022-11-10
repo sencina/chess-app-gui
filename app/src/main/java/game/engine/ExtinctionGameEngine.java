@@ -3,34 +3,24 @@ package game.engine;
 import adapter.Adapter;
 import edu.austral.dissis.chess.gui.*;
 import factory.BoardFactory;
-import game.managers.*;
+import factory.ManagerFactory;
+import game.managers.ClassicTurnManager;
+import game.managers.GameManager;
 import game.movement.Movement;
 import game.status.GameStatus;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static factory.PieceFactory.createQueen;
+public class ExtinctionGameEngine implements GameEngine {
 
-public class MyGameEngine implements GameEngine {
-
-    private final GameStatus status = new GameStatus(new ClassicTurnManager(), BoardFactory.createClassicBoard());
+    private final GameStatus status = new GameStatus(new ClassicTurnManager(), BoardFactory.createExtinctionBoard());
     private final List<GameManager> managers;
 
-
-    //classic game engine
-    public MyGameEngine() {
-        List<GameManager> managers = new ArrayList<>();
-        managers.add(new MoveGameManager());
-        managers.add(new PromotionManager(createQueen(PlayerColor.WHITE)));
-        managers.add(new ClassicWinManager());
-        this.managers = managers;
+    public ExtinctionGameEngine() {
+        this.managers = ManagerFactory.extinctionManager();
     }
 
-    public MyGameEngine(List<GameManager> managers) {
-        this.managers = managers;
-    }
 
     @NotNull
     @Override
@@ -48,6 +38,6 @@ public class MyGameEngine implements GameEngine {
     @NotNull
     @Override
     public InitialState init() {
-        return new InitialState(Adapter.boardSize(8,8),Adapter.pieces(status.board()), PlayerColor.WHITE);
+        return new InitialState(new BoardSize(8,8),Adapter.pieces(status.board()), PlayerColor.WHITE);
     }
 }

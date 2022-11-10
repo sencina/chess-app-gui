@@ -1,7 +1,9 @@
 package edu.austral.dissis.chess
 
 import edu.austral.dissis.chess.gui.*
+import game.engine.ExtinctionGameEngine
 import game.engine.MyGameEngine
+import game.engine.TestEngine
 import javafx.application.Application
 
 fun main() {
