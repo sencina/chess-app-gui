@@ -6,9 +6,16 @@ import game.exceptions.InvalidMovementException;
 import game.movement.Coordinate;
 import game.movement.Movement;
 import game.status.GameStatus;
-import validation.movementValidor.AbstractValidator;
-import validation.movementValidor.MovementValidator;
 
+
+/*
+*
+* Regenerar lo inmutable tod0 el tiempo
+*
+* Recomendacion: tenemos que transformar las diferencias del modelo y aplicar los cambios que deberia aplicar
+*
+*
+* */
 public class UnidirectionalMovementValidator extends AbstractValidator {
 
     private final int columns;

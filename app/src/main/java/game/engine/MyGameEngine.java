@@ -9,6 +9,7 @@ import game.status.GameStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static factory.PieceFactory.createQueen;
@@ -48,6 +49,6 @@ public class MyGameEngine implements GameEngine {
     @NotNull
     @Override
     public InitialState init() {
-        return new InitialState(Adapter.boardSize(8,8),Adapter.pieces(status.board()), PlayerColor.WHITE);
+        return new InitialState(Adapter.boardSize(status.board().columns(),status.board().rows()),Adapter.pieces(status.board()), PlayerColor.WHITE);
     }
 }

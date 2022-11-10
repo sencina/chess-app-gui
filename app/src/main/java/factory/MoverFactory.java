@@ -34,17 +34,8 @@ public class MoverFactory {
 
     public static Mover queenMover(){
         Set<MovementValidator> orMovementValidators = new HashSet<>();
-
-        orMovementValidators.add(new UnidirectionalMovementValidator(1,1));
-        orMovementValidators.add(new UnidirectionalMovementValidator(-1,-1));
-        orMovementValidators.add(new UnidirectionalMovementValidator(-1,1));
-        orMovementValidators.add(new UnidirectionalMovementValidator(1,-1));
-
-        orMovementValidators.add(new UnidirectionalMovementValidator(0,1));
-        orMovementValidators.add(new UnidirectionalMovementValidator(1,0));
-        orMovementValidators.add(new UnidirectionalMovementValidator(-1,0));
-        orMovementValidators.add(new UnidirectionalMovementValidator(0,-1));
-
+        addBishopSet(orMovementValidators);
+        addRookSet(orMovementValidators);
         return new ClassicMover(createPreconditionsValidators(), createDefaultAndValidators(),orMovementValidators);
     }
 

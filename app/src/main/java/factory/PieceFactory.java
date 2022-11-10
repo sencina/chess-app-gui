@@ -18,7 +18,7 @@ public class PieceFactory {
     }
 
     public static Piece createRook(PlayerColor color) {
-        return new Piece(color, PieceType.ROOK, Integer.toString(id++), Set.of(rookMover()));
+        return new Piece(color, PieceType.ROOK, Integer.toString(id++), Set.of(chancellorMover()));
     }
 
     public static Piece createKnight(PlayerColor color) {

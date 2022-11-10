@@ -74,8 +74,9 @@ public class BoardFactory {
         return new RectangularBoard(8, 8, history);
 
     }
-
-    public Board createEmptyRectangularBoard(int columns, int rows) {
-        return new RectangularBoard(columns, rows);
+    public static Board createRectangularBoard(int columns, int rows, List<Map<Coordinate,Piece>> list) {
+        return new RectangularBoard(columns, rows, list);
     }
+
+    //Abstraer a una interfaz y no a una factory estático
 }

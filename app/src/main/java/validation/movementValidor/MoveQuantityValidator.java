@@ -24,7 +24,7 @@ public class MoveQuantityValidator extends AbstractValidator {
         int count = 0;
         Piece piece = history.get(history.size() - 1).get(movement.from());
         Coordinate lastCoordinate = movement.from();
-        for (int i = history.size() - 1; i >= 0; i--) { // historial al revez
+        for (int i = history.size() - 1; i >= 0; i--) { // historial a la -1
             if (history.get(i).get(lastCoordinate).equals(piece)) continue;
             for (Coordinate coordinate : history.get(i).keySet()) {
                 if (history.get(i).get(coordinate).equals(piece)){

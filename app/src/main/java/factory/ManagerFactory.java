@@ -14,7 +14,7 @@ public class ManagerFactory {
         List<GameManager> managers = new ArrayList<>();
         managers.add(new MoveGameManager());
         managers.add(new PromotionManager(createQueen(PlayerColor.WHITE)));
-        managers.add(new ClassicWinManager());
+        managers.add(new ExtinctionWinManager());
         return managers;
     }
 
